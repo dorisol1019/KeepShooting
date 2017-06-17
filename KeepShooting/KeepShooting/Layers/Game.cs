@@ -26,25 +26,6 @@ namespace KeepShooting.Layers
         Queue<MoverType> enemyTypes = null;
 
         readonly GameMode _mode;
-        readonly string _replayFileName;
-
-        public Game(GameMode mode, string replayFileName = "")
-        {
-            _mode = mode;
-            _replayFileName = replayFileName;
-            string[] bgmList = new string[] {
-            "Music/Game/bgm_maoudamashii_8bit18",
-            "Music/Game/bgm_maoudamashii_fantasy03",
-            "Music/Game/bgm_maoudamashii_fantasy04",
-            "Music/Game/bgm_maoudamashii_fantasy11",
-            "Music/Game/bgm_maoudamashii_fantasy12",
-            "Music/Game/bgm_maoudamashii_fantasy15"
-            };
-            randomBGM = bgmList[CCRandom.Next(bgmList.Length)];
-            CCAudioEngine.SharedEngine.PreloadBackgroundMusic(randomBGM);
-
-            CCAudioEngine.SharedEngine.PreloadEffect("SE/explosion");
-        }
 
         PlayData _playData = null;
 
@@ -76,32 +57,7 @@ namespace KeepShooting.Layers
             AddChild(backGround);
 
             if (_mode == GameMode.Replay)
-            {
-                string json = null;
-                //Task.Run(async () =>
-                //{
-                //    IFolder rootFolder = FileSystem.Current.LocalStorage;
-
-                //    var folder = await rootFolder.CreateFolderAsync("PlayData", CreationCollisionOption.OpenIfExists);
-                //    var file = await folder.GetFileAsync(_replayFileName);
-
-
-                //    json = await file.ReadAllTextAsync();
-
-                //}).Wait();
-                //try
-                //{
-                //    PlayData data = Newtonsoft.Json.JsonConvert.DeserializeObject<PlayData>(json);
-
-                //    playerPoint = data.PlayerPositions;
-                //    enemyPopPointX = new Queue<int>(data.EnemyPopPoints_X);
-                //    enemyTypes = new Queue<MoverType>(data.MoverTypes);
-                //}
-                //catch (Exception e)
-                //{
-                //    CCLog.Log($"[MyLog][Error]:{e.Message}");
-                //    throw;
-                //}
+            {                
                 playerPoint = _playData.PlayerPositions;
                 enemyPopPointX = new Queue<int>(_playData.EnemyPopPoints_X);
                 enemyTypes = new Queue<MoverType>(_playData.MoverTypes);
@@ -120,10 +76,7 @@ namespace KeepShooting.Layers
             enemys = new List<Enemy>(100);
             playerBullets = new List<IBullet<IShot>>(50);
             enemyBullets = new List<IBullet<IShot>>(100);
-
-            //var bgms=System.IO.Directory.EnumerateFiles("/Resources/Music/Game", "*.mp3").ToArray();
-            //_audioEngine.PlayBackgroundMusic(bgms[(new Random()).Next(bgms.Length)], true);
-
+            
             if (_mode == GameMode.Normal)
             {
                 playerPoint = new List<Point>(10000);
@@ -155,7 +108,6 @@ namespace KeepShooting.Layers
             foreach (var count in counts)
             {
                 count.Position = new CCPoint(1000, GlobalGameData.Window_Center_Y);
-                //count.AddAction(countAction);
                 AddChild(count);
             }
 
@@ -174,11 +126,7 @@ namespace KeepShooting.Layers
                             Enemy enemy = new Enemy(new EnemySkinFactory(), this);
                             enemyPopPointX.Enqueue(enemy.InitXPoint);
                             enemyTypes.Enqueue(enemy.Type);
-                            AddEnemy(enemy);
-
-                            //_playData.EnemyPopPoints_X.Add(enemy.InitXPoint);
-                            //_playData.MoverTypes.Add(enemy.Type);
-
+                            AddEnemy(enemy);                            
                         }
                         else if (_mode == GameMode.Replay)
                         {
@@ -319,34 +267,6 @@ namespace KeepShooting.Layers
             AddChild(button);
             AddEventListener(buttontouch);
 
-            //var enemyCount = new CCLabel($"enemy:{enemys.Capacity}", "arial", 20);
-            //var playercapa = new CCLabel($"p_bullet_capa:{playerBullets.Capacity}", "arial", 20);
-            //var enemycapa = new CCLabel($"e_bullet_capa:{enemyBullets.Capacity}", "arial", 20);
-            //var enemyframe = new CCLabel($"e_f_count:{enemyPopPointX.Count}", "arial", 20);
-            //var p_frame = new CCLabel($"p_f_count:{playerPoint.Count}", "arial", 20);
-            //var e_type = new CCLabel($"e_typecount:{enemyTypes.Count}", "arial", 20);
-
-            //var items = new[] { enemyCount, playercapa, enemycapa, enemyframe, p_frame, e_type };
-            //int i = 0;
-            //foreach (var item in items)
-            //{
-            //    item.Position = new CCPoint(380, 30 * i + 20);
-
-            //    AddChild(item);
-            //    i++;
-            //}
-
-            //Schedule(_ =>
-            //{
-
-            //    enemyCount.Text = $"enemy:{enemys.Capacity}";
-            //    playercapa.Text = $"p_bullet_capa:{playerBullets.Capacity}";
-            //    enemycapa.Text = $"e_bullet_capa:{enemyBullets.Capacity}";
-            //    enemyframe.Text = $"e_f_count:{enemyPopPointX.Count}";
-            //    p_frame.Text = $"p_f_count:{playerPoint.Capacity}";
-            //    e_type.Text = $"e_typecount:{enemyTypes.Count}";
-            //}
-            //, 1);
         }
         bool isbuttontouch = false;
 
@@ -371,19 +291,6 @@ namespace KeepShooting.Layers
 
         private void AddBullets(List<IBullet<IShot>> charachterBullets, IEnumerable<IBullet<IShot>> bullets)
         {
-            //Queue<IBullet<IShot>> queue = new Queue<IBullet<IShot>>(bullets);
-            //for (int i = 0; i < charachterBullets.Count; i++)
-            //{
-            //    if (!charachterBullets[i].IsEnable)
-            //    {
-            //        RemoveChild(charachterBullets[i].Node);
-            //        charachterBullets[i] = queue.Dequeue();
-            //        AddChild(charachterBullets[i].Node);
-            //        if (!queue.Any()) break;
-            //    }
-            //}
-
-            //if (queue.Any())
             {
                 charachterBullets.AddRange(bullets);
                 foreach (var bullet in bullets)
@@ -491,9 +398,6 @@ namespace KeepShooting.Layers
                    var gameLayer_ = new Loading(new RankingAssetsLoader(data));
                    newScene_.AddChild(gameLayer_);
 
-                   //// シーン切り替え時の効果を設定
-                   //CCTransitionScene cCTransitionScene_ = new CCTransitionFade(1.0f, newScene_);
-
                    // ゲーム画面へシーン切り替え
                    this.Director.ReplaceScene(newScene_);
                    return;
@@ -504,8 +408,6 @@ namespace KeepShooting.Layers
                var gameLayer = new Loading((new RankingAssetsLoader()));
                newScene.AddChild(gameLayer);
 
-               // シーン切り替え時の効果を設定
-               //CCTransitionScene cCTransitionScene = new CCTransitionFade(1.0f, newScene);
 
                // ゲーム画面へシーン切り替え
                this.Director.ReplaceScene(newScene);
