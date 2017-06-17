@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionName="0.1.4" package="jp.dorifru0209.KeepShooting" android:versionCode="5">
+	<uses-sdk android:minSdkVersion="15" />
+	<application android:label="撃ち続けろ"></application>
+</manifest>

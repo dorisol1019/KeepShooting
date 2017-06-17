@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D88A971-4B26-4512-B295-9472DDBD9EB0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KeepShooting</RootNamespace>
+    <AssemblyName>KeepShooting</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreditContentPage.xaml.cs">
+      <DependentUpon>CreditContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameDelegate.cs" />
+    <Compile Include="Layers\BaseLayer.cs" />
+    <Compile Include="Layers\Game.cs" />
+    <Compile Include="Layers\Loading.cs" />
+    <Compile Include="Layers\Ranking.cs" />
+    <Compile Include="Layers\TestLayer.cs" />
+    <Compile Include="Layers\TestLayer2.cs" />
+    <Compile Include="Layers\Title.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseAssetsLoader.cs" />
+    <Compile Include="Models\BaseDataObject.cs" />
+    <Compile Include="Models\BrokenMover.cs" />
+    <Compile Include="Models\CCEventListenerGesture.cs" />
+    <Compile Include="Models\CharacterData.cs" />
+    <Compile Include="Models\Collision2D.cs" />
+    <Compile Include="Models\IShareSNS.cs" />
+    <Compile Include="Models\MyEncoding.cs" />
+    <Compile Include="Models\Enemy.cs" />
+    <Compile Include="Models\EnemyBullet.cs" />
+    <Compile Include="Models\EnemySkin.cs" />
+    <Compile Include="Models\EnemySkinFactory.cs" />
+    <Compile Include="Models\EnemySkinFactory_Assign.cs" />
+    <Compile Include="Models\GameAssets.cs" />
+    <Compile Include="Models\GameAssetsLoader.cs" />
+    <Compile Include="Models\GameMode.cs" />
+    <Compile Include="Models\GlobalGameData.cs" />
+    <Compile Include="Models\IAssets.cs" />
+    <Compile Include="Models\IBaseUrl.cs" />
+    <Compile Include="Models\IBullet.cs" />
+    <Compile Include="Models\IBulletsCreater.cs" />
+    <Compile Include="Models\ICharacter.cs" />
+    <Compile Include="Models\IEnemySkinFactory.cs" />
+    <Compile Include="Models\IFighter.cs" />
+    <Compile Include="Models\IFireable.cs" />
+    <Compile Include="Models\IInput.cs" />
+    <Compile Include="Models\ILoader.cs" />
+    <Compile Include="Models\IMover.cs" />
+    <Compile Include="Models\INavigator.cs" />
+    <Compile Include="Models\IOData.cs" />
+    <Compile Include="Models\IORanking.cs" />
+    <Compile Include="Models\ISceneChanger.cs" />
+    <Compile Include="Models\IShot.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\IWebViewCaller.cs" />
+    <Compile Include="Models\LinerShot.cs" />
+    <Compile Include="Models\MenuItemNoActionLable.cs" />
+    <Compile Include="Models\ModalLayer.cs" />
+    <Compile Include="Models\ModalMenu.cs" />
+    <Compile Include="Models\ModalMenuDialog.cs" />
+    <Compile Include="Models\MoveLabel.cs" />
+    <Compile Include="Models\MoverType.cs" />
+    <Compile Include="Models\NormalEnemyFire.cs" />
+    <Compile Include="Models\NormalEnemySkin.cs" />
+    <Compile Include="Models\PlayData.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerBullet.cs" />
+    <Compile Include="Models\PlayerFire.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\RankingAssets.cs" />
+    <Compile Include="Models\RankingAssetsLoader.cs" />
+    <Compile Include="Models\RankingData.cs" />
+    <Compile Include="Models\ReplayEnemy.cs" />
+    <Compile Include="Models\ReplayPlayer.cs" />
+    <Compile Include="Models\RunLengthEncoding.cs" />
+    <Compile Include="Models\StrongEnemyFire.cs" />
+    <Compile Include="Models\StrongEnemySkin.cs" />
+    <Compile Include="Models\SwitchingMoveLabel.cs" />
+    <Compile Include="Models\TitleAssets.cs" />
+    <Compile Include="Models\TitleAssetsLoader.cs" />
+    <Compile Include="Models\YesNoDialog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CreditContentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>
